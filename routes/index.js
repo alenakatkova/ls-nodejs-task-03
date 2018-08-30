@@ -18,5 +18,6 @@ router.get('/login', ctrlLogin.getLogin);
 router.get('/admin', isAdmin, ctrlAdmin.getAdmin);
 
 router.post('/login', ctrlLogin.sendLogin);
+router.post('/', ctrlHome.sendEmail);
 
 module.exports = router;
