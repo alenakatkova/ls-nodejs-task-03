@@ -1,0 +1,13 @@
+{
+  "session": {
+    "secret": "loftschool",
+    "key": "sessionkey",
+    "cookie": {
+      "path": "/",
+      "httpOnly": true,
+      "maxAge": null
+    },
+    "saveUninitialized": false,
+    "resave": false
+  }
+}
