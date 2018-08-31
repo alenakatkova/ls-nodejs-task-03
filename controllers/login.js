@@ -1,9 +1,9 @@
 const db = require('../models/db')();
-const express = require('express');
 const psw = require('../libs/password');
+const validateFields = require('../libs/validation').validateFields;
 
 module.exports.getLogin = (req, res) => {
-  res.render('pages/login', { title: 'Login' });
+  res.render('pages/login', { msgslogin: req.flash('error') });
 };
 
 let email = '';
@@ -12,10 +12,10 @@ let salt = '';
 let password = {};
 
 module.exports.sendLogin = (req, res, next) => {
-  if (!req.body.email || !req.body.password) {
+  let isValid = validateFields(req.body);
+  if (!isValid) {
     req.flash('error', 'Заполните все поля');
-
-    return res.render('pages/login', { msgslogin: req.flash('error') });
+    return res.redirect('/login?msg=Заполните все поля');
   }
 
   email = req.body.email;
@@ -30,6 +30,6 @@ module.exports.sendLogin = (req, res, next) => {
 
   db.save();
 
-  req.session.isAdmin = true;
-  return res.redirect('/admin');
+  req.flash('success', 'Вы авторизованы');
+  return res.redirect('/?msg=Вы авторизованы');
 };

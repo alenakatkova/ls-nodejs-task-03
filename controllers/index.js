@@ -1,27 +1,29 @@
 const db = require('../models/db')();
-const express = require('express');
+const validateFields = require('../libs/validation').validateFields;
 
 module.exports.getHome = function (req, res) {
-  res.render('pages/index', { title: 'Home' });
+  res.render('pages/index', { msgsemail: req.flash('error') });
 };
 
 module.exports.sendEmail = (req, res, next) => {
-  if (!req.body.email || !req.body.name || !req.body.message) {
+  const { email, name, message } = req.body;
+
+  let isValid = validateFields(req.body);
+  if (!isValid) {
     req.flash('error', 'Заполните все поля');
-    return res.render('pages/index', { msgsemail: req.flash('error') });
+    return res.redirect('/?msg=Поля не заполнены');
   }
 
   let emails = db.get('emails') || [];
   emails.push({
-    email: req.body.email,
-    name: req.body.name,
-    message: req.body.message
+    email: email,
+    name: name,
+    message: message
   });
 
   db.set('emails', [ ...emails ]);
-
   db.save();
 
   req.flash('success', 'Ваше сообщение было отправлено');
-  res.render('pages/index', { msgsemail: req.flash('success') });
+  return res.redirect('/?msg=hoorah');
 };
