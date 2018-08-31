@@ -2,7 +2,10 @@ const db = require('../models/db')();
 const validateFields = require('../libs/validation').validateFields;
 
 module.exports.getHome = function (req, res) {
-  res.render('pages/index', { msgsemail: req.flash('error') });
+  res.render('pages/index', {
+    msgsemail: req.flash('error'),
+    goods: db.get('goods')
+  });
 };
 
 module.exports.sendEmail = (req, res, next) => {
@@ -25,5 +28,5 @@ module.exports.sendEmail = (req, res, next) => {
   db.save();
 
   req.flash('success', 'Ваше сообщение было отправлено');
-  return res.redirect('/?msg=hoorah');
+  return res.redirect('/?msg=Сообщение отправлено');
 };

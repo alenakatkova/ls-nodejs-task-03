@@ -31,5 +31,5 @@ module.exports.sendLogin = (req, res, next) => {
   db.save();
 
   req.flash('success', 'Вы авторизованы');
-  return res.redirect('/?msg=Вы авторизованы');
+  return res.redirect('/admin?msg=Вы авторизованы');
 };

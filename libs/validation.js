@@ -7,6 +7,9 @@ module.exports = {
   },
 
   validateUpload: (file) => {
-    return file.name === '' || file.size === 0;
+    if (file.name === '' || file.size === 0) {
+      return false;
+    }
+    return true;
   }
 };
