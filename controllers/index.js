@@ -1,6 +1,7 @@
 const db = require('../models/db')();
 const validateFields = require('../libs/validation').validateFields;
 
+// Обработка GET запроса. Рендеринг главной страницы
 module.exports.getHome = function (req, res) {
   res.render('pages/index', {
     msgsemail: req.flash('error'),
@@ -8,6 +9,7 @@ module.exports.getHome = function (req, res) {
   });
 };
 
+// Обработка POST запроса. Сохранение сообщения от пользователя в БД
 module.exports.sendEmail = (req, res, next) => {
   const { email, name, message } = req.body;
 
@@ -17,6 +19,7 @@ module.exports.sendEmail = (req, res, next) => {
     return res.redirect('/?msg=Поля не заполнены');
   }
 
+  // Запись нового сообщения от пользователя в БД
   let emails = db.get('emails') || [];
   emails.push({
     email: email,
