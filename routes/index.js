@@ -19,5 +19,6 @@ router.get('/admin', isAdmin, ctrlAdmin.getAdmin);
 
 router.post('/login', ctrlLogin.sendLogin);
 router.post('/', ctrlHome.sendEmail);
+router.post('/admin/skills', ctrlAdmin.sendSkills);
 
 module.exports = router;
