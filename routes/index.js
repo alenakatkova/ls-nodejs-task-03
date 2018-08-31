@@ -15,10 +15,11 @@ const isAdmin = (req, res, next) => {
 
 router.get('/', ctrlHome.getHome);
 router.get('/login', ctrlLogin.getLogin);
-router.get('/admin', isAdmin, ctrlAdmin.getAdmin);
+router.get('/admin', ctrlAdmin.getAdmin);
 
 router.post('/login', ctrlLogin.sendLogin);
 router.post('/', ctrlHome.sendEmail);
 router.post('/admin/skills', ctrlAdmin.sendSkills);
+router.post('/admin/upload', ctrlAdmin.uploadGood);
 
 module.exports = router;
