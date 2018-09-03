@@ -19,6 +19,11 @@ module.exports.sendLogin = (req, res, next) => {
   const { email, password } = req.body;
   const user = db.get('user');
 
+  if (!user) {
+    req.flash('error', 'Сначала задайте пароль и почту пользователя');
+    return res.render('pages/login', { msgslogin: req.flash('error') });
+  }
+
   if (user.email === email && psw.validPassword(password)) {
     req.session.isAdmin = true;
     res.redirect('/admin');

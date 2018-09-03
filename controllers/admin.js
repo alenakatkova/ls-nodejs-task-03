@@ -25,14 +25,20 @@ module.exports.sendSkills = (req, res, next) => {
   }
 
   // Запись новой анкеты в БД
-  let skills = db.get('skills') || [];
-  skills.push({
-    age: age,
-    concerts: concerts,
-    cities: cities,
-    years: years
-  });
-  db.set('skills', [ ...skills ]);
+  db.set('skills', [{
+    number: age,
+    text: 'Возраст начала занятий на скрипке'
+  }, {
+    number: concerts,
+    text: 'Концертов отыграл'
+  }, {
+    number: cities,
+    text: 'Максимальное число городов в туре'
+  }, {
+    number: years,
+    text: 'Лет на сцене в качестве скрипача'
+  }]);
+
   db.save();
 
   req.flash('success', 'Данные отправлены');

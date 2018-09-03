@@ -5,7 +5,8 @@ const validateFields = require('../libs/validation').validateFields;
 module.exports.getHome = function (req, res) {
   res.render('pages/index', {
     msgsemail: req.flash('error'),
-    goods: db.get('goods')
+    goods: db.get('goods'),
+    skills: db.get('skills')
   });
 };
 

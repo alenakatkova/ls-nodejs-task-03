@@ -46,10 +46,33 @@
       "price": 600
     },
     {
-      "photo": "111.jpg",
-      "src": "upload/111.jpg",
-      "name": "Bird",
-      "price": "12"
+      "photo": "miami.png",
+      "src": "upload/miami.png",
+      "name": "Trip",
+      "price": "10000"
     }
-  ]
+  ],
+  "skills": [
+    {
+      "number": "24",
+      "text": "Возраст начала занятий на скрипке"
+    },
+    {
+      "number": "24",
+      "text": "Концертов отыграл"
+    },
+    {
+      "number": "24",
+      "text": "Максимальное число городов в туре"
+    },
+    {
+      "number": "24",
+      "text": "Лет на сцене в качестве скрипача"
+    }
+  ],
+  "user": {
+    "email": "a@a",
+    "hash": "8b0d6ad4813a03d8b21bb6379dd0175af29f8b9f14469e198436ebeffcdf1ade69e2cfd7408d8619704de1135a70aa21169fcc49ca373a1138fa1ae6c6efaf840f800b5ef20f4d1195e04e4d36170b02247b3ba4de0185057c96c05d583ca0616de283588de0f20e4d0b9cd51e004ecf4a3c663233d40fe5c08625a146c5914e40e10eb1c7e0e6b10fc398466889d34cf955627be1152ceb7ec9897f3f6684c02840b491f8067ba483d58a1738b76d96fe7afeda2d1df64834b2f505f7d2c7e3668716de7ae70784d5e88a39863cf6be41fdf829d56f8e9322845ee98381cb9d43329609e1f60b485e2f4fcadafb02313b48c7729a826aacff96120b2782e0499a58a25b5293eff4e47f316073643d9e66692ac5e58760b5f4c7afabbcddd81728b093d61de56bc440c23eef825d5029dbce339e23aad5603ccb7a0a30164a4d8c692490e7cd7b8863317b7f60f8396459440b7316a30f5650500b673135aa018d1acf90c132c710e34f802ab87ee478aa1cd45a5fe07adb4aa506546223c4a0dbd1086c51413116ad5731e3ef6739093b75ab444cda50b26822c5327ddb5c76f29f507d47462dc5e66c46ec2b8dc17ee2c25f6ab670370d3e7a10c3133e41f97ca5accb1e9772174ced3f95d18fe14670b38e9fd7ff0ef3677fe493a2a8648aee8ea2605683b86cb594045e051763914d0ef855593ef11e8b81f0e1c616580f",
+    "salt": "92576474350d7c48d1fd267157b329f6"
+  }
 }
