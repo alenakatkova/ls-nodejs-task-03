@@ -9,14 +9,20 @@ const fs = require('fs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(session({
-  'secret': 'loftschool',
-  'resave': false,
-  'saveUninitialized': false
-}));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(session({
+  secret: 'loftschool',
+  key: 'sessionkey',
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    maxAge: null
+  },
+  saveUninitialized: false,
+  resave: false
+}));
 
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));

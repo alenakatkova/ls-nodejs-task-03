@@ -7,8 +7,7 @@ const validation = require('../libs/validation');
 // Обработка GET запроса. Рендеринг страницы admin
 module.exports.getAdmin = function (req, res) {
   res.render('pages/admin', {
-    msgskill: req.flash('skillsErrMsg'), // сообщение о неправильном заполнении формы отправки анкеты
-    msgfile: req.flash('uploadErrMsg') // сообщение о неправильном заполнении формы загрузки товара
+    title: 'Admin page'
   });
 };
 
@@ -20,7 +19,9 @@ module.exports.sendSkills = (req, res, next) => {
   let isValid = validation.validateFields(req.body);
   if (!isValid) {
     req.flash('skillsErrMsg', 'Поля не заполнены');
-    return res.redirect(`/admin?msg=Поля не заполнены`);
+    return res.render('pages/admin', {
+      msgskill: req.flash('skillsErrMsg') // сообщение о неправильном заполнении формы отправки анкеты
+    });
   }
 
   // Запись новой анкеты в БД
@@ -57,7 +58,9 @@ module.exports.uploadGood = (req, res, next) => {
     if (!areFieldsValidValid || !isFileValid) {
       fs.unlinkSync(files.photo.path);
       req.flash('uploadErrMsg', 'Заполните все поля');
-      return res.redirect(`/admin?msg=Заполните все поля`);
+      return res.render('pages/admin', {
+        msgfile: req.flash('uploadErrMsg')
+      });
     }
 
     fileName = path.join(upload, files.photo.name);
@@ -82,7 +85,7 @@ module.exports.uploadGood = (req, res, next) => {
       db.save();
 
       req.flash('success', 'Товар загружен');
-      return res.redirect(`/?msg=Товар загружен`);
+      return res.redirect(`/admin?msg=Товар загружен`);
     });
   });
 };

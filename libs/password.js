@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const db = require('../models/db')();
 
 module.exports.setPassword = (password) => {
   const salt = crypto
@@ -10,3 +11,14 @@ module.exports.setPassword = (password) => {
 
   return { salt, hash };
 };
+
+
+module.exports.validPassword = (password) => {
+  const user = db.get('user');
+
+  const hash = crypto
+    .pbkdf2Sync(password, user.salt, 1000, 512, 'sha512')
+    .toString('hex')
+
+  return hash === user.hash
+}
