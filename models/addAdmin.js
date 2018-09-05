@@ -10,7 +10,7 @@ let hash = '';
 let salt = '';
 let password = {};
 
-rl.question('Login: ', answer => {
+rl.question('E-mail: ', answer => {
   email = answer;
   rl.question('Password: ', answer => {
     password = psw.setPassword(answer);
