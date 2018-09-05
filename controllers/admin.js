@@ -19,9 +19,7 @@ module.exports.sendSkills = (req, res, next) => {
   let isValid = validation.validateFields(req.body);
   if (!isValid) {
     req.flash('skillsErrMsg', 'Поля не заполнены');
-    return res.render('pages/admin', {
-      msgskill: req.flash('skillsErrMsg') // сообщение о неправильном заполнении формы отправки анкеты
-    });
+    return res.render('pages/admin', { msgskill: req.flash('skillsErrMsg') });
   }
 
   // Запись новой анкеты в БД
@@ -64,9 +62,7 @@ module.exports.uploadGood = (req, res, next) => {
     if (!areFieldsValidValid || !isFileValid) {
       fs.unlinkSync(files.photo.path);
       req.flash('uploadErrMsg', 'Заполните все поля');
-      return res.render('pages/admin', {
-        msgfile: req.flash('uploadErrMsg')
-      });
+      return res.render('pages/admin', { msgfile: req.flash('uploadErrMsg') });
     }
 
     fileName = path.join(upload, files.photo.name);
